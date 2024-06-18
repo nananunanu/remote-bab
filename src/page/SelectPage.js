@@ -25,7 +25,7 @@ export default function SelectPage() {
             <form>
               <div className="select" id="high">
                 <label>
-                  <motion.div className="weather"
+                  <motion.div className="selectButton"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1.05 }}>
                     
@@ -35,7 +35,7 @@ export default function SelectPage() {
                 </label>
       
                 <label>
-                  <motion.div className="weather" 
+                  <motion.div className="selectButton" 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1.05 }}>
                     
@@ -47,7 +47,7 @@ export default function SelectPage() {
 
               <div className="select">
                 <label>
-                  <motion.div className="weather"
+                  <motion.div className="selectButton"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1.05 }}>
                     
@@ -57,7 +57,7 @@ export default function SelectPage() {
                 </label>
 
                 <label>
-                  <motion.div className="weather"
+                  <motion.div className="selectButton"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1.05 }}>
                     
@@ -76,7 +76,7 @@ export default function SelectPage() {
             <form>
               <div className="select" id="high">
                 <label>
-                  <motion.div className="weather"
+                  <motion.div className="selectButton"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1.05 }}>
                     
@@ -86,7 +86,7 @@ export default function SelectPage() {
                 </label>
       
                 <label>
-                  <motion.div className="weather" 
+                  <motion.div className="selectButton" 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1.05 }}>
                     
@@ -98,7 +98,7 @@ export default function SelectPage() {
 
               <div className="select">
                 <label>
-                  <motion.div className="weather"
+                  <motion.div className="selectButton"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1.05 }}>
                     
@@ -108,7 +108,7 @@ export default function SelectPage() {
                 </label>
 
                 <label>
-                  <motion.div className="weather"
+                  <motion.div className="selectButton"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1.05 }}>
                     
