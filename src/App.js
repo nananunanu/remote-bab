@@ -1,60 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-import './action.js';
 import { motion } from "framer-motion";
 
-import gif from './image/Bean Eater@4x-1.0s-200px-200px.gif';
+import SelectPage from "./page/SelectPage";
+import LoadingPage from './page/LoadingPage';
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 
-
-//이것은 주석입니다. ㅎㅇ 김건우
-
-//dho dksdehlsi
-//뭐할거야.
-
-// ㅎㅇ 김건우 잘 받았니? 이것은 주석입니다.햣
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-        
-      <div className="screen">
-        
-     
-        <div>
-          
-          <p className='lunch'>
-          
-            점메추<br></br>
-          </p> 
-          <p>
-          점심 메뉴를 추천<br></br>
-          해 줄래요?
-          
-          
-        </p>
-        <motion.img 
-        whileHover={{ scale: 1.2 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-         className='gif' src={gif}/>
-        </div>
-        
-      </div>
+      <BrowserRouter>
+      <nav>
+        <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/'>
+          처음화면
+        </NavLink>
+        <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/SelectPage'>
+          / 셀렉트
+        </NavLink>
+      </nav>
 
-
+      <Routes>
+        <Route exact path='/' element={<LoadingPage />} />
+        <Route path='/SelectPage' element={<SelectPage />} />
+      </Routes>
+    </BrowserRouter>
     </div>
   );
 }
 
 export default App;
-
-// $function() {
-//   function
-// }
-
-
-
-// .btn:hover {
-//   background-color:#002ead;
-//   transition: 0.7s;
-// }

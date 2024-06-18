@@ -1,24 +1,20 @@
+import React from "react";
 import { motion } from "framer-motion";
 
-import logo from './logo.svg';
-import logo1 from './image/sun-solid.svg';
-import logo2 from './image/cloud-solid.svg';
-import logo3 from './image/snowflake-regular.svg';
-import logo4 from './image/umbrella-solid.svg';
+import logo1 from '../image/sun-solid.svg';
+import logo2 from '../image/cloud-solid.svg';
+import logo3 from '../image/snowflake-regular.svg';
+import logo4 from '../image/umbrella-solid.svg';
 
-import logo5 from './image/face-sad-tear-solid.svg';
-import logo6 from './image/face-smile-solid.svg';
-import logo7 from './image/face-angry-solid.svg';
-import logo8 from './image/face-meh-solid.svg';
+import logo5 from '../image/face-sad-tear-solid.svg';
+import logo6 from '../image/face-smile-solid.svg';
+import logo7 from '../image/face-angry-solid.svg';
+import logo8 from '../image/face-meh-solid.svg';
 
-import logo9 from './image/utensils-solid.svg';
+import logo9 from '../image/utensils-solid.svg';
 
-import './App2.css';
-
-
-
-function App() {
-  return (
+export default function SelectPage() {
+    return (
     <div className="App">
       
       <div className='screen'>
@@ -139,7 +135,5 @@ function App() {
 
       </div>
     </div>
-  );
-}
-
-export default App;
+    );
+  }
