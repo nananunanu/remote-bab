@@ -5,13 +5,14 @@ import { motion } from "framer-motion";
 
 import gif from './image/Bean Eater@4x-1.0s-200px-200px.gif';
 
-<<<<<<< Updated upstream
 
 //이것은 주석입니다. ㅎㅇ 김건우
-=======
+
 //dho dksdehlsi
 //뭐할거야.
->>>>>>> Stashed changes
+
+// ㅎㅇ 김건우 잘 받았니? 이것은 주석입니다.햣
+
 function App() {
   return (
     <div className="App">
