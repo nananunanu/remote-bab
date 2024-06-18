@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import gif from './image/Bean Eater@4x-1.0s-200px-200px.gif';
 
 
-
+//이것은 주석입니다.
 function App() {
   return (
     <div className="App">
