@@ -2,28 +2,23 @@ import { motion } from "framer-motion";
 
 import SelectPage from "./page/SelectPage";
 import LoadingPage from './page/LoadingPage';
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
+
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <nav>
-        <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/'>
-          처음화면
-        </NavLink>
-        <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/SelectPage'>
-          / 셀렉트
-        </NavLink>
-      </nav>
-
       <Routes>
         <Route exact path='/' element={<LoadingPage />} />
         <Route path='/SelectPage' element={<SelectPage />} />
+        {/* 추가적인 라우트가 필요하다면 여기에 추가 */}
+        {/* 404 페이지 설정 예시 */}
+        {/* <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </div>
   );
 }

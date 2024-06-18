@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-
-import '../action.js';
-
+import { useNavigate } from 'react-router-dom';
 import gif from '../image/Bean Eater@4x-1.0s-200px-200px.gif';
 
 export default function LoadingPage() {
+
+    //3초 후에 SelectPage로 이동
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+        navigate('/SelectPage');
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [navigate]);
+    
+    //LoadingPage
     return (
-    <div className="App2">
+    <div className="App">
         <div className="screen2">
             <div>
-            
                 <p className='lunch'>
                 점메추<br />
                 </p> 

@@ -121,7 +121,7 @@ export default function SelectPage() {
             </form>
           </div>
 
-          <div>
+          <div className="submitButton">
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 1.1 }}
