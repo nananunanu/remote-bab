@@ -1,2 +1,2 @@
 # remote-bab
-our first project(kim geon woo, son gun)
+our first project(kim geon woo, son geon)
