@@ -1,4 +1,6 @@
 import React from "react";
+import $ from "jquery";
+
 import { motion } from "framer-motion";
 
 import logo1 from '../image/sun-solid.svg';
@@ -13,8 +15,26 @@ import logo8 from '../image/face-meh-solid.svg';
 
 import logo9 from '../image/utensils-solid.svg';
 
+//버튼 클릭에 따른 기능 구현
+// $("input[name='weather']").change(function(){
+//    $(".div").css("backgroundColor","red");
+// 	// var test = $("input[name='weather']:checked").val();
+//   // window.alert(test);
+
+// });
+$('motion.div').click(function(){
+	$(this).css({'background':'yellow','width':'100px'}) 
+});
+
+
+
+
 export default function SelectPage() {
     return (
+
+
+      
+    
     <div className="App">
       
       <div className='screen'>
@@ -135,5 +155,6 @@ export default function SelectPage() {
 
       </div>
     </div>
+    
     );
   }
