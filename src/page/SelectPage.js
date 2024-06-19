@@ -1,5 +1,5 @@
-import React from "react";
-import $ from "jquery";
+import React, { useState } from "react";
+// import $ from "jquery";
 
 import { motion } from "framer-motion";
 
@@ -15,26 +15,18 @@ import logo8 from '../image/face-meh-solid.svg';
 
 import logo9 from '../image/utensils-solid.svg';
 
-//버튼 클릭에 따른 기능 구현
-// $("input[name='weather']").change(function(){
-//    $(".div").css("backgroundColor","red");
-// 	// var test = $("input[name='weather']:checked").val();
-//   // window.alert(test);
-
-// });
-$('motion.div').click(function(){
-	$(this).css({'background':'yellow','width':'100px'}) 
-});
-
-
 
 
 export default function SelectPage() {
+
+  let [btnActive, setBtnActive] = useState(false);
+
+  const toggleActive = (e) => {
+    setBtnActive(true);
+  }
+
     return (
-
-
       
-    
     <div className="App">
       
       <div className='screen'>
@@ -45,7 +37,7 @@ export default function SelectPage() {
             <form>
               <div className="select" id="high">
                 <label>
-                  <motion.div className="selectButton"
+                  <motion.div className={"selectButton" + (btnActive ? " active" : "")} onClick={toggleActive}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 1.05 }}>
                     
