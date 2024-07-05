@@ -73,9 +73,9 @@ html {
   width: 65px;
   height: 65px;
 }
-[type="radio"] {
+/* [type="radio"] {
   appearance: none;
-}
+} */
 /* 버튼 두개씩 가로로 정렬 */
 .select {
   display: flex;

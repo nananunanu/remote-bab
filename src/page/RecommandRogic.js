@@ -1,23 +1,20 @@
-import React, { useState } from "react";
-// import $ from "jquery";
+import React, { createContext, useState } from 'react';
 
+export const RadioContext = createContext();
 
+export const RadioProvider = ({ children }) => {
+  const [selectedOptions, setSelectedOptions] = useState({
+    option1: '',
+    option2: ''
+  });
 
-
-
-
-
-
-
-
-
-
-
-export default function RecommandRogic() {
+  const setRadioOptions = (option) => {
+    setSelectedOptions(option);
+  };
 
   return (
-    <div>
-        안녕하세요
-    </div>
-  );
+    <RadioContext.Provider value={{ selectedOptions, setRadioOptions }}>
+      {children}
+    </RadioContext.Provider>
+  )
 }
