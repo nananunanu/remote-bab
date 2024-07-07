@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { RadioContext } from './RecommandRogic';
+import { useNavigate } from 'react-router-dom';
 
 const RecommandPage = () => {
   const { selectedOptions } = useContext(RadioContext);
@@ -55,7 +56,11 @@ const RecommandPage = () => {
   else if(firstOption == 'cloud' && secondOption == 'meh') {
     result = 'case 16'
   }
-
+  const navigate = useNavigate();
+  
+  const backPage = () => {
+    navigate('/SelectPage')
+  };
 
   return (
     <div>
@@ -63,7 +68,9 @@ const RecommandPage = () => {
       <h2>첫번째거 : {firstOption}</h2>
       <h2>두번째거 : {secondOption}</h2>
       <br/>
-      <h2>두번째거 : {result}</h2>
+      <h2>Case : {result}</h2>
+
+      <button onClick={backPage}>돌아가기</button>
 
     </div>
   );

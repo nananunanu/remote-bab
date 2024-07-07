@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { RadioContext } from "./RecommandRogic";
+import useSound from 'use-sound';
 // import $ from "jquery";
 
 import { motion } from "framer-motion";
@@ -17,14 +18,18 @@ import logo8 from '../image/face-meh-solid.svg';
 
 import logo9 from '../image/utensils-solid.svg';
 
-
-
 export default function SelectPage() {
 
+  const buttonVariants = {
+    pressed: {
+      scale: 0.9,
+      transition: { duration: 0.05 },
+    },
+  }
   //날씨 버튼 
   const [activeStates, setActiveStates] = useState([false, false, false, false]); //<배열> 모든 배열칸에 false값을 줌
   
-  const toggleActive = (index) => {
+  const toggleActive = (index, option) => {
     const newActiveStates = [...activeStates]; // 기존 상태 배열 복사
 
     for (let i = 0; i < 4; i++) {  //for문으로 모든 배열의 값을 false로 바꿈 초록색 -> 흰색
@@ -35,12 +40,19 @@ export default function SelectPage() {
     newActiveStates[index] = !newActiveStates[index]; // 클릭된 버튼의 값을 true로 변경
     setActiveStates(newActiveStates); // 상태 업데이트
 
+    if (selectedOption1 == option) {
+      setSelectedOption1('');
+    } else {
+      setSelectedOption1(option);
+    }
+
+    navigator.vibrate(200);
   };
   
   //기분 버튼
   const [activeStates2, setActiveStates2] = useState([false, false, false, false]); //<배열> 모든 배열칸에 false값을 줌
   
-  const toggleActive2 = (index) => {
+  const toggleActive2 = (index, option) => {
     const newActiveStates2 = [...activeStates2]; // 기존 상태 배열 복사
 
     for (let i = 0; i < 4; i++) {  //for문으로 모든 배열의 값을 false로 바꿈 초록색 -> 흰색
@@ -50,182 +62,206 @@ export default function SelectPage() {
 
     newActiveStates2[index] = !newActiveStates2[index]; // 클릭된 버튼의 값을 true로 변경
     setActiveStates2(newActiveStates2); // 상태 업데이트
+
+    if (selectedOption2 == option) {
+      setSelectedOption2('');
+    } else {
+      setSelectedOption2(option);
+    }
+
+    navigator.vibrate(200);
   };
 
   const { setRadioOptions } = useContext(RadioContext);
   const [selectedOption1, setSelectedOption1] = useState('');
   const [selectedOption2, setSelectedOption2] = useState('');
-  const navigate = useNavigate();
 
   const handleChange1 = (event) => {
     setSelectedOption1(event.target.value);
-
+   
   };
 
   const handleChange2 = (event) => {
     setSelectedOption2(event.target.value);
   };
 
-  const [isLoading, setIsLoading] = useState(false); 
-  const [notSelct, setNotSelect] = useState('');
+  //로딩화면true/false변경 및 선택한 날씨/기분 값을 RecommandRogic으로 넘겨주고 2초뒤에 결과 페이지로 넘겨주는 로직
+  const [isLoading, setIsLoading] = useState(false);  //로딩중인지 아닌지를 판단하는 변수
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate(); //다음페이지로 넘겨주는 리액트 훅(기능)
+
+  const handleSubmit = (event) => { 
     event.preventDefault();
     
-    if(selectedOption1 == false) {
-      setNotSelect('날씨를 선택하지 않았습니다.');
-      
-    } else if(selectedOption1 && selectedOption2) {
-      setNotSelect('');
+    setRadioOptions({ option1: selectedOption1, option2: selectedOption2 });
+    
+    if(!selectedOption1 && selectedOption2) { //알림창 띄우기
+      alert('날씨를 선택해야 합니다!');
+
+    } else if(selectedOption1 && !selectedOption2) {
+      alert('기분을 선택해야 합니다!');
+
+    } else if(!selectedOption1 && !selectedOption2) {
+      alert('항목을 선택해야 합니다.');
     }
     else {
-      setNotSelect('기분을 선택하지 않았습니다.');
+      setIsLoading(true); //로딩페이지를 열어줌
+
+      setTimeout(() => { //타이머
+        navigate('/RecommandPage'); //결과페이지로 넘겨줌
+        setIsLoading(false); //로딩페이지를 닫아줌
+      }, 2000);
     }
-    setIsLoading(true);
-
-    setRadioOptions({ option1: selectedOption1, option2: selectedOption2 });
-
-    setTimeout(() => {
-      if (selectedOption1 && selectedOption2) {
-        navigate('/RecommandPage');
-      }
-      setIsLoading(false);
-    }, 2000);
-    
   };
 
+  //결과화면으로 넘어가기 전 로딩화면
+  const [loadingText, setLoadingText] = useState('');
+
+  useEffect(() => { //그냥 250밀리세컨드마다 배열돌면서 글자 바꿔주는거
+    const texts = ['로딩중', '로딩중.', '로딩중..', '로딩중...'];
+    let index = 0;
+
+    const intervalId = setInterval(() => {
+      index = (index + 1) % texts.length;
+
+      setLoadingText(texts[index]);
+    }, 250);
+
+    return () => clearInterval(intervalId); // 컴포넌트 언마운트 시 interval 정리
+  }, []);
   return (
 
     <div className="App">
 
       <div className='screen'>
-        <div className='title'>
-            
-            {isLoading && (
-              <div>
-                <p>로딩중입니다.</p>
-                <p>{notSelct}</p>
-              </div>
-            )}
-            
-            {!isLoading && (
-            <form onSubmit={handleSubmit}>
-              <div className='block'>
-                <p>날씨 어때요?</p>
+        {isLoading && //isLoading이 true면 해당 컴포넌트가 렌더링됨
+          <div className="isLoading">
+            <div>선택된 밥을 먹을지어다</div>
+            <p>{loadingText}</p>
+          </div> 
+        }
+        
+        {!isLoading && ( //isLoading이 false면 해당 컴포넌트가 렌더링됨
+          <form onSubmit={handleSubmit} className="form">
+            <div className='block'>
+              <p>날씨 어때요?</p>
+              <div className="select" id="high">
+                <label>
+                  <motion.div
+                    className={"selectButton" + (activeStates[0] ? " active" : "")}
+                    variants={buttonVariants}
+                    whileTap="pressed"
+                  >
 
-
-                  <div className="select" id="high">
-                    <label>
-                      <motion.div
-                        className={"selectButton" + (activeStates[0] ? " active" : "")}
-                        whileTap={{ scale: 1.15 }}>
-                          
-                        <input type="radio" name="weather" value="sun" checked={selectedOption1 === 'sun'} onChange={handleChange1} onClick={() => toggleActive(0)}></input>
-                        <img className='logo' src={logo1} />
-                      </motion.div>
-                    </label>
-          
-                    <label>
-                      <motion.div 
-                        className={"selectButton" + (activeStates[1] ? " active" : "")}
-                        whileTap={{ scale: 1.15 }}>
-                        
-                        <input type="radio" name="weather" value="snowflake" checked={selectedOption1 === 'snowflake'} onChange={handleChange1} onClick={() => toggleActive(1)}></input>
-                        <img className='logo' src={logo3} />
-                      </motion.div>
-                    </label>
-                  </div>
-
-                  <div className="select">
-                    <label>
-                      <motion.div
-                        className={"selectButton" + (activeStates[2] ? " active" : "")}
-                        whileTap={{ scale: 1.15 }}>
-                        
-                        <input type="radio" name="weather" value="umbrella" checked={selectedOption1 === 'umbrella'} onChange={handleChange1} onClick={() => toggleActive(2)}></input>
-                        <img className='logo' src={logo4} />
-                      </motion.div>
-                    </label>
-
-                    <label>
-                      <motion.div
-                        className={"selectButton" + (activeStates[3] ? " active" : "")}
-                        whileTap={{ scale: 1.15 }}>
-                        
-                        <input type="radio" name="weather" value="cloud" checked={selectedOption1 === 'cloud'} onChange={handleChange1} onClick={() => toggleActive(3)}></input>
-                        <img className='logo' src={logo2} />
-                      </motion.div>
-                    </label>
-                  </div>
-
-
-              </div>
-              
-              <div className='block'>
-                <p>기분 어때요?</p>
-
-
-                  <div className="select" id="high">
-                    <label>
-                      <motion.div
-                        className={"selectButton" + (activeStates2[0] ? " active" : "")}
-                        whileTap={{ scale: 1.15 }}>
-                        
-                        <input type="radio" name="face" value="sad" checked={selectedOption2 === 'sad'} onChange={handleChange2} onClick={() => toggleActive2(0)}></input>
-                        <img className='logo' src={logo5} />
-                      </motion.div>
-                    </label>
-          
-                    <label>
-                      <motion.div
-                        className={"selectButton" + (activeStates2[1] ? " active" : "")}
-                        whileTap={{ scale: 1.15 }}>
-                        
-                        <input type="radio" name="face" value="smile" checked={selectedOption2 === 'smile'} onChange={handleChange2} onClick={() => toggleActive2(1)}></input>
-                        <img className='logo' src={logo6} />
-                      </motion.div>
-                    </label>
-                  </div>
-
-                  <div className="select">
-                    <label>
-                      <motion.div
-                        className={"selectButton" + (activeStates2[2] ? " active" : "")}
-                        whileTap={{ scale: 1.15 }}>
-                        
-                        <input type="radio" name="face" value="angry" checked={selectedOption2 === 'angry'} onChange={handleChange2} onClick={() => toggleActive2(2)}></input>
-                        <img className='logo' src={logo7} />
-                      </motion.div>
-                    </label>
-
-                    <label>
-                      <motion.div
-                        className={"selectButton" + (activeStates2[3] ? " active" : "")}
-                        whileTap={{ scale: 1.15 }}>
-                        
-                        <input type="radio" name="face" value="meh" checked={selectedOption2 === 'meh'} onChange={handleChange2} onClick={() => toggleActive2(3)}></input>
-                        <img className='logo' src={logo8} />
-                      </motion.div>
-                    </label>
-                  </div>
-
-
+                    <input type="radio" name="weather" value="sun" checked={selectedOption1 === 'sun'} onChange={handleChange1} onClick={() => toggleActive(0, 'sun')}></input>
+                    <img className='logo' src={logo1} />
+                  </motion.div>
+                </label> 
+      
+                <label>
+                  <motion.div 
+                    className={"selectButton" + (activeStates[1] ? " active" : "")}
+                    variants={buttonVariants}
+                    whileTap="pressed"
+                  >
+                    
+                    <input type="radio" name="weather" value="snowflake" checked={selectedOption1 === 'snowflake'} onChange={handleChange1} onClick={() => toggleActive(1, 'snowflake')}></input>
+                    <img className='logo' src={logo3} />
+                  </motion.div>
+                </label>
               </div>
 
-              <div className="submitButton">
-                <motion.button 
-                  whileTap={{ scale: 1.15 }}
-                  id='start' type="submit" ><img className='utensils' src={logo9} />
-                </motion.button>
+              <div className="select">
+                <label>
+                  <motion.div
+                    className={"selectButton" + (activeStates[2] ? " active" : "")}
+                    variants={buttonVariants}
+                    whileTap="pressed"
+                  >
+                    
+                    <input type="radio" name="weather" value="umbrella" checked={selectedOption1 === 'umbrella'} onChange={handleChange1} onClick={() => toggleActive(2, 'umbrella')}></input>
+                    <img className='logo' src={logo4} />
+                  </motion.div>
+                </label>
+                <label>
+                  <motion.div
+                    className={"selectButton" + (activeStates[3] ? " active" : "")}
+                    variants={buttonVariants}
+                    whileTap="pressed"
+                  >
+                    
+                    <input type="radio" name="weather" value="cloud" checked={selectedOption1 === 'cloud'} onChange={handleChange1} onClick={() => toggleActive(3, 'cloud')}></input>
+                    <img className='logo' src={logo2} />
+                  </motion.div>
+                </label>
               </div>
-            </form>
-            )}
-          
-            
+            </div>
 
+            <div className='block'>
+              <p id="mood">기분 어때요?</p>
+              <div className="select" id="high">
+                <label>
+                  <motion.div
+                    className={"selectButton" + (activeStates2[0] ? " active" : "")}
+                    variants={buttonVariants}
+                    whileTap="pressed"
+                  >
+                    
+                    <input type="radio" name="face" value="sad" checked={selectedOption2 === 'sad'} onChange={handleChange2} onClick={() => toggleActive2(0, 'sad')}></input>
+                    <img className='logo' src={logo5} />
+                  </motion.div>
+                </label>
+      
+                <label>
+                  <motion.div
+                    className={"selectButton" + (activeStates2[1] ? " active" : "")}
+                    variants={buttonVariants}
+                    whileTap="pressed"
+                  >
+                    
+                    <input type="radio" name="face" value="smile" checked={selectedOption2 === 'smile'} onChange={handleChange2} onClick={() => toggleActive2(1, 'smile')}></input>
+                    <img className='logo' src={logo6} />
+                  </motion.div>
+                </label>
+              </div>
+              <div className="select">
+                <label>
+                  <motion.div
+                    className={"selectButton" + (activeStates2[2] ? " active" : "")}
+                    variants={buttonVariants}
+                    whileTap="pressed"
+                  >
+                    
+                    <input type="radio" name="face" value="angry" checked={selectedOption2 === 'angry'} onChange={handleChange2} onClick={() => toggleActive2(2, 'angry')}></input>
+                    <img className='logo' src={logo7} />
+                  </motion.div>
+                </label>
+                <label>
+                  <motion.div
+                    className={"selectButton" + (activeStates2[3] ? " active" : "")}
+                    variants={buttonVariants}
+                    whileTap="pressed"
+                  >
+                    
+                    <input type="radio" name="face" value="meh" checked={selectedOption2 === 'meh'} onChange={handleChange2} onClick={() => toggleActive2(3, 'meh')}></input>
+                    <img className='logo' src={logo8} />
+                  </motion.div>
+                </label>
+              </div>
+            </div>
 
-          </div>
+            <div className="submitButton">
+              <motion.button 
+                  variants={buttonVariants}
+                  whileTap="pressed"
+
+                id='start' type="submit" ><img className='utensils' src={logo9} />
+              </motion.button>
+            </div>
+          </form>
+        )}
       </div>
+      
     </div>
 
   );

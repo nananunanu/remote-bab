@@ -18,7 +18,7 @@ export default function LoadingPage() {
     
     //LoadingPage
     return (
-    <div className="App">
+    <div className="App2">
         <div className="screen2">
             <div>
                 <p className='lunch'>
