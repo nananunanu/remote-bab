@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import { RadioContext } from "./RecommandRogic";
 import useSound from 'use-sound';
@@ -26,6 +26,7 @@ export default function SelectPage() {
       transition: { duration: 0.05 },
     },
   }
+
   //날씨 버튼 
   const [activeStates, setActiveStates] = useState([false, false, false, false]); //<배열> 모든 배열칸에 false값을 줌
   
@@ -73,12 +74,12 @@ export default function SelectPage() {
   };
 
   const { setRadioOptions } = useContext(RadioContext);
-  const [selectedOption1, setSelectedOption1] = useState('');
+
+  const [selectedOption1, setSelectedOption1] = useState('');//변수의 값이 바뀌면 브라우저가 재 렌더링 됨
   const [selectedOption2, setSelectedOption2] = useState('');
 
   const handleChange1 = (event) => {
     setSelectedOption1(event.target.value);
-   
   };
 
   const handleChange2 = (event) => {
@@ -122,18 +123,35 @@ export default function SelectPage() {
     let index = 0;
 
     const intervalId = setInterval(() => {
-      index = (index + 1) % texts.length;
+      index = (index + 1) % texts.length; //0 1 2 3 반복됨
 
       setLoadingText(texts[index]);
     }, 250);
 
     return () => clearInterval(intervalId); // 컴포넌트 언마운트 시 interval 정리
   }, []);
+
+  const [ backgroundImage, setBackgroundImage ] = useState('screen');
+
+  useEffect(() => {
+    if (selectedOption1 == 'sun') {
+      setBackgroundImage('sunBackground');
+    } else if (selectedOption1 == 'snowflake') {
+      setBackgroundImage('snowflakeBackground');
+    } else if (selectedOption1 == 'umbrella') {
+      setBackgroundImage('umbrellaBackground');    
+    } else if (selectedOption1 == 'cloud') {
+      setBackgroundImage('cloudBackground');  
+    } else {
+      setBackgroundImage('normalBackground');  
+    }
+  }, [selectedOption1])
+
   return (
 
     <div className="App">
 
-      <div className='screen'>
+      <div className={backgroundImage}>
         {isLoading && //isLoading이 true면 해당 컴포넌트가 렌더링됨
           <div className="isLoading">
             <div>선택된 밥을 먹을지어다</div>

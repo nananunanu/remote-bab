@@ -7,14 +7,9 @@
   font-weight: 0px;
   font-style: normal;
 }
-
-input {
-  width: 0;
-  height: 0;
-}
-
 .App {
   text-align: center;
+  background-color: #000000;
 }
 .App2 {
   text-align: center;
@@ -59,11 +54,15 @@ input {
   /* width: 390px;
   height: 844px; */
 }
-/* 글자랑 버튼 묶음 */
+/* 글자 */
 .block p {
   margin-left: 5%;
   font-size: 36px;
   text-align: left;
+  color: #ffffff;
+}
+.block a {
+  color: #fff;
 }
 #mood {
   margin-top: 10px;
@@ -72,6 +71,10 @@ input {
 [type="radio"] {
   appearance: none;
 }
+input {
+  width: 0;
+  height: 0;
+}
 /* 버튼 두개씩 가로로 정렬 */
 .select {
   display: flex;
@@ -79,27 +82,43 @@ input {
 }
 /* 선택버튼 한개한개 */
 .selectButton {
-  width: 136px;
-  height: 126px;
+  width: 116px;
+  height: 106px;
   border-radius: 20px;
   border: 0px solid gray;
   box-shadow: 0px 4px 4px rgb(0,0,0,0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  /* background-color: #fff; */
   &.active {
-    /* background-color: #00745D; */
-    /* background-color: #808400; */
-    /* background-color: #F4E1DE; */
-    background-color: #ffdde0;
+    /* background-color: #ffdde0; */
+    background-color: #fff;
   }
 }
-/* 버튼 로고 크기 및 위치 */
 .logo {
   width: 65px;
   height: 65px;
+  /* width: 0px;
+  height: 0px; */
 }
+/* .selectButton {
+  width: 400px;
+  height: 50px;
+  border-radius: 20px;
+  border: 0px solid gray;
+  box-shadow: 0px 4px 4px rgb(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.active {
+    background-color: #ffdde0;
+  }
+}
+.logo {
+  width: 15px;
+  height: 15px;
+} */
 
 #high {
   margin-bottom: 6%;
@@ -129,6 +148,91 @@ input {
   margin-top: 50%;
 }
 
+/* 버튼 클릭할 때 마다 배경 바꿔주기 */
+
+.sunBackground {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* overflow: hidden; */
+  z-index: 1;
+}
+.sunBackground::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./image/sun.gif') center center/cover no-repeat;
+  opacity: 0.5; /* 투명도 조절 */
+  z-index: -1;
+  pointer-events: none; /* 필요에 따라 추가: 배경 클릭 방지 */
+}
+
+.snowflakeBackground {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* overflow: hidden; */
+  z-index: 1;
+}
+.snowflakeBackground::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./image/snow.gif') center center/cover no-repeat;
+  opacity: 0.5; /* 투명도 조절 */
+  z-index: -1;
+  pointer-events: none; /* 필요에 따라 추가: 배경 클릭 방지 */
+}
+.umbrellaBackground {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* overflow: hidden; */
+  z-index: 1;
+}
+.umbrellaBackground::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./image/rain.gif') center center/cover no-repeat;
+  opacity: 0.5; /* 투명도 조절 */
+  z-index: -1;
+  pointer-events: none; /* 필요에 따라 추가: 배경 클릭 방지 */
+}
+.cloudBackground {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* overflow: hidden; */
+  z-index: 1;
+}
+.cloudBackground::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./image/cloud.gif') center center/cover no-repeat;
+  opacity: 0.8; /* 투명도 조절 */
+  z-index: -1;
+  pointer-events: none; /* 필요에 따라 추가: 배경 클릭 방지 */
+}
+
+.normalBackground {
+  margin: auto;
+  background-color: #ffffff;
+  height: 2000px;
+}
 
 
 
