@@ -1,15 +1,20 @@
 * {
+  user-select: none;
+  
   margin: 0;
   padding: 0;
+  text-decoration: none;
+  border-collapse: collapse;
+  list-style: none;
 
-  font-family: "Noto Serif KR", serif;
+
+  font-family: 'Ownglyph_eunbyul21-Rg';
   font-optical-sizing: auto;
-  font-weight: 0px;
+  font-weight: normal;
   font-style: normal;
 }
 .App {
   text-align: center;
-  background-color: #000000;
 }
 .App2 {
   text-align: center;
@@ -22,13 +27,11 @@
   display: flex;
   text-align: center;
   margin: 0 auto;
-  /* width: 390px;
-  height: 844px; */
 }
 .screen2 p {
   display: block;
   text-align: left;
-  font-size: 40px;
+  font-size: 4.5vh;
   margin-left: 28px;
   color: white;
 }
@@ -38,26 +41,92 @@
   text-shadow: 0px 4px 4px rgb(0,0,0,0.25);
 }
 .gif {
-  width: 130px;
-  height: 130px;
-  margin-top: 200px;
+  width: 15.5vh;
+  height: 15.5vh;
+  margin-top: 17vh;
 }
+
+/* 시크릿페이지(SecretContributePage) */
+.secretBackground {
+  text-align: center;
+  background-color: #000000;
+  height: 2000px;
+}
+
+.secretScreen {
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  align-items: center;
+  font-size: 5vw;
+  line-height: 50px;
+  color: white;
+  background-color: black;
+  z-index: 0;
+}
+.secretScreen a {
+  font-size: 1vh;
+}
+
+.title {
+  font-size: 10vw;
+  line-height: 160px;
+}
+
+.subTitle {
+  font-size: 8vw;
+  line-height: 140px;
+}
+@keyframes slideFadeOut {
+  0% {
+      opacity: 0;
+      transform: translateY(100%);
+      
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+      transform: translateY(-200%);
+  }
+}
+
+.goBack {
+  display: flex;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+
+.slideUp {
+  top: 5vh;
+  bottom: 5vh;
+  height: 100vh;
+  animation: slideUp 3s forwards;
+  animation: slideFadeOut 20s linear forwards;
+  z-index: 0;
+}
+
+
 
 /* 선택페이지(SelectPage) */
 .screen {
   margin: auto;
-  background-color: #fff;
-  /* width: 390px;
-  height: 844px; */
+
 }
-.form {
-  /* width: 390px;
-  height: 844px; */
-}
+
 /* 글자 */
 .block p {
-  margin-left: 5%;
-  font-size: 36px;
+  margin-left: 7vw;
+  font-size: 4.3vh;
   text-align: left;
   color: #ffffff;
 }
@@ -82,43 +151,78 @@ input {
 }
 /* 선택버튼 한개한개 */
 .selectButton {
-  width: 116px;
-  height: 106px;
-  border-radius: 20px;
+  width: 14vh;
+  height: 13vh;
+  border-radius: 2.5vh;
   border: 0px solid gray;
   box-shadow: 0px 4px 4px rgb(0,0,0,0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: #fff; */
   &.active {
     /* background-color: #ffdde0; */
-    background-color: #fff;
+    /* background-color: #F26D25; */
+    background-color: #ffffff;
   }
 }
+
 .logo {
-  width: 65px;
-  height: 65px;
-  /* width: 0px;
-  height: 0px; */
+  width: 7.5vh;
+  height: 7.5vh;
+  pointer-events: none;
 }
-/* .selectButton {
-  width: 400px;
-  height: 50px;
-  border-radius: 20px;
-  border: 0px solid gray;
-  box-shadow: 0px 4px 4px rgb(0,0,0,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &.active {
-    background-color: #ffdde0;
-  }
+.logoSad {
+  width: 7.5vh;
+  height: 7.5vh;
+  pointer-events: none;
+  z-index: 2;
 }
-.logo {
-  width: 15px;
-  height: 15px;
-} */
+.logoSadc {
+  width: 7.5vh;
+  height: 7.5vh;
+  pointer-events: none;
+  /* filter: brightness(0) invert(67%) sepia(85%) saturate(1541%) hue-rotate(181deg); */
+  z-index: 2;
+}
+.logoSmile {
+  width: 7.5vh;
+  height: 7.5vh;
+  pointer-events: none;
+  z-index: 2;
+}
+.logoSmilec {
+  width: 7.5vh;
+  height: 7.5vh;
+  pointer-events: none;
+  /* filter: brightness(0) saturate(100%) invert(86%) sepia(96%) saturate(3658%) hue-rotate(323deg); */
+  z-index: 2;
+}
+.logoAngry {
+  width: 7.5vh;
+  height: 7.5vh;
+  pointer-events: none;
+  z-index: 2;
+}
+.logoAngryc {
+  pointer-events: none;
+  width: 7.5vh;
+  height: 7.5vh;
+  /* filter: brightness(0) saturate(100%) invert(54%) sepia(63%) saturate(5800%) hue-rotate(336deg); */
+  z-index: 2;
+}
+.logoMeh {
+  width: 7.5vh;
+  height: 7.5vh;
+  pointer-events: none;
+  z-index: 2;
+}
+.logoMehc {
+  width: 7.5vh;
+  height: 7.5vh;
+  pointer-events: none;
+  /* filter: brightness(0) saturate(100%) invert(42%) sepia(96%) saturate(0%) hue-rotate(228deg); */
+  z-index: 2;
+}
 
 #high {
   margin-bottom: 6%;
@@ -126,36 +230,33 @@ input {
 
 /* 랜덤버튼 */
 .utensils {
-  width: 34px;
-  height: 39px;
+  width: 5vh;
+  height: 5vh;
+  pointer-events: none;
 }
 #start {
-  width: 75px;
-  height: 75px;
+  width: 9vh;
+  height: 9vh;
   margin-top: 25px;
   background-color: #F26D25;
   border: 0px solid gray;
-  border-radius: 20px;
+  border-radius: 2.5vh;
   box-shadow: 0px 4px 4px rgb(0,0,0,0.25);
 }
 
-.isLoading {
-  /* width: 390px;
-  height: 844px; */
-}
 .isLoading p {
-  font-size: 30px;
+  font-size: 6vw;
   margin-top: 50%;
 }
 
 /* 버튼 클릭할 때 마다 배경 바꿔주기 */
 
-.sunBackground {
+/* .sunBackground {
   position: relative;
   width: 100%;
   height: 100vh;
-  /* overflow: hidden; */
   z-index: 1;
+  background-color: #000000;
 }
 .sunBackground::before {
   content: "";
@@ -164,18 +265,27 @@ input {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('./image/sun.gif') center center/cover no-repeat;
-  opacity: 0.5; /* 투명도 조절 */
+  background: url('./image/sunNew.gif') center center/cover no-repeat;
   z-index: -1;
-  pointer-events: none; /* 필요에 따라 추가: 배경 클릭 방지 */
+  pointer-events: none;
+  animation: fadeIn 2s forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
 }
 
 .snowflakeBackground {
   position: relative;
   width: 100%;
   height: 100vh;
-  /* overflow: hidden; */
   z-index: 1;
+  background-color: #000000;
+
 }
 .snowflakeBackground::before {
   content: "";
@@ -185,16 +295,26 @@ input {
   width: 100%;
   height: 100%;
   background: url('./image/snow.gif') center center/cover no-repeat;
-  opacity: 0.5; /* 투명도 조절 */
   z-index: -1;
-  pointer-events: none; /* 필요에 따라 추가: 배경 클릭 방지 */
+  pointer-events: none;
+  animation: fadeIn2 2s forwards;
 }
+@keyframes fadeIn2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
 .umbrellaBackground {
   position: relative;
   width: 100%;
   height: 100vh;
-  /* overflow: hidden; */
   z-index: 1;
+  background-color: #000000;
+
 }
 .umbrellaBackground::before {
   content: "";
@@ -204,18 +324,26 @@ input {
   width: 100%;
   height: 100%;
   background: url('./image/rain.gif') center center/cover no-repeat;
-  opacity: 0.5; /* 투명도 조절 */
   z-index: -1;
-  pointer-events: none; /* 필요에 따라 추가: 배경 클릭 방지 */
+  pointer-events: none;
+  animation: fadeIn3 2s forwards;
 }
-.cloudBackground {
+@keyframes fadeIn3 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+} */
+/* .cloudBackground {
   position: relative;
   width: 100%;
   height: 100vh;
-  /* overflow: hidden; */
   z-index: 1;
-}
-.cloudBackground::before {
+  background-color: #000000;
+} */
+/* .cloudBackground::before {
   content: "";
   position: absolute;
   top: 0;
@@ -223,28 +351,348 @@ input {
   width: 100%;
   height: 100%;
   background: url('./image/cloud.gif') center center/cover no-repeat;
-  opacity: 0.8; /* 투명도 조절 */
   z-index: -1;
-  pointer-events: none; /* 필요에 따라 추가: 배경 클릭 방지 */
+  pointer-events: none;
+  animation: fadeIn4 2s forwards;
 }
-
+@keyframes fadeIn4 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+} */
+.sunBackground {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./image/sunNew.gif') center center/cover no-repeat;
+  z-index: -1;
+  pointer-events: none;
+  animation: fadeIn1 2s forwards;
+}
+@keyframes fadeIn1 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+.snowflakeBackground {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./image/snow.gif') center center/cover no-repeat;
+  z-index: -1;
+  pointer-events: none;
+  animation: fadeIn2 2s forwards;
+}
+@keyframes fadeIn2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+.umbrellaBackground {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./image/rain.gif') center center/cover no-repeat;
+  z-index: -1;
+  pointer-events: none;
+  animation: fadeIn3 2s forwards;
+}
+@keyframes fadeIn3 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+.cloudBackground {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./image/cloud.gif') center center/cover no-repeat;
+  z-index: -1;
+  pointer-events: none;
+  animation: fadeIn4 2s forwards;
+}
+@keyframes fadeIn4 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
 .normalBackground {
-  margin: auto;
-  background-color: #ffffff;
-  height: 2000px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #42537D;
+}
+.virtualBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-color: #000000;
+}
+/* 슬라이드업 컨테이너 */
+.slideUpContainerBackground {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: slideUpContainerBackground 0.5s forwards;
+}
+@keyframes slideUpContainerBackground {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 }
 
+.slideDownContainerBackground {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: slideDownContainerBackground 0.5s forwards;
+}
+@keyframes slideDownContainerBackground {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
 
+.slideUpContainer {
+  background-color: #fff;
+  width: 100vw;
+  height: 100vw;
+  border: 0px solid #000000;
+  border-radius: 35px;
+  animation: slideUpContainer 0.5s forwards;
+  z-index: 3;
+}
 
+@keyframes slideUpContainer {
+  from {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+  to {
+    opacity: 1;
+      transform: translateY(60vh);
+  }
+}
 
+.slideDownContainer {
+  background-color: #fff;
+  width: 100vw;
+  height: 100vw;
+  border: 0px solid #000000;
+  border-radius: 35px;
+  animation: slideDownContainer 0.5s forwards;
+  z-index: 3;
+}
 
+@keyframes slideDownContainer {
+  from {
+    opacity: 1;
+    transform: translateY(60vh);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+}
 
+.containerSelect {
+  align-items: center;
+  display: flex;
+  margin: auto;
+  margin-bottom: 2vh;
+  width: 90vw;
+  height: 8vh;
+  border-radius: 10px;
+}
+.containerSelect p {
+  font-size: 5vw;
+  margin-left: 20vw;
+}
 
+/* alert custom */
+/* .alertAddBackground {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: alertAddBackground 0.5s forwards;
+}
+@keyframes alertAddBackground {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
 
+.alertRemoveBackground {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: alertRemoveBackground 0.5s forwards;
+}
+@keyframes alertRemoveBackground {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
 
+.alertAddContainer {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+  height: 20vw;
+  background-color: #fff;
+  border: 0px solid #000000;
+  border-radius: 20px;
+  animation: alertAddContainer 0.5s forwards;
+  z-index: 3;
+}
 
+@keyframes alertAddContainer {
+  from {
+    opacity: 0;
+    transform: translateY(-20vh);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(40vh);
+  }
+}
 
+.alertRemoveContainer {
+  margin: auto;
+  background-color: #fff;
+  width: 80vw;
+  height: 20vw;
+  border: 0px solid #000000;
+  border-radius: 20px;
+  animation: alertRemoveContainer 0.5s forwards;
+  z-index: 3;
+}
+@keyframes alertRemoveContainer {
+  from {
+    opacity: 1;
+    transform: translateY(40vh);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20vh);
+  }
+}
+.alertBox p {
+  font-size: 4vw;
+} */
+/* 추천결과페이지(RecommandPage) */
+.recommandBack {
+  width: 100%;
+  height: 100vh;
+  background-color: #8ba3e0;
+}
+.backFlex {
+  position: absolute;
+  display: flex;
+  left: 10%;
+  top: 80vh;
+}
+.backPageButton button {
+  width: 40vw;
+  height: 10vw;
+}
+.backPageButton p {
+  font-size: 1vh;
+}
 
+.highImgBox {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.imgBox {
+  background-color: #2c2c2c;
+  width: 40vw;
+  height: 40vw;
+}
+.imgBox img {
+  width: 40vw;
+  height: 40vw;
+}
+.textBox{
+  font-size: 4vw;
+  width: 40vw;
+  height: 40vw;
+}
+
+.highImgBox p {
+  font-size: 7vw;
+  width: 40vw;
+  margin-top: 1vh;
+}
+
+.emotionalWriting {
+  margin-top: 4vh;
+}
+.emotionalWriting p {
+  margin: auto;
+  font-size: 5vw;
+  width: 80vw;
+  height: auto;
+}
 
 
 

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import SelectPage from "./page/SelectPage";
 import LoadingPage from './page/LoadingPage';
 import RecommandPage from './page/RecommandPage';
-
+import SecretContributePage from './page/SecretContributePage';
 import { RadioProvider } from './page/RecommandRogic';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -20,6 +20,8 @@ function App() {
         <Route exact path='/' element={<LoadingPage />} />
         <Route path='/SelectPage' element={<SelectPage />} />
         <Route path='/RecommandPage' element={<RecommandPage />} />
+        <Route path='/SecretContributePage' element={<SecretContributePage />} />
+
 
         {/* 추가적인 라우트가 필요하다면 여기에 추가 */}
         {/* 404 페이지 설정 예시 */}
